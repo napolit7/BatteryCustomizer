@@ -5,6 +5,7 @@
 
 HBPreferences *preferences = nil;
 NSString *fill_hex = nil;
+NSString *fill_hexPowerSave = nil;
 BOOL fill_enabled = NO;
 NSString *bolt_hex = nil;
 BOOL bolt_enabled = NO;
@@ -13,18 +14,30 @@ BOOL pin_enabled = NO;
 NSString *border_hex = nil;
 BOOL border_enabled = NO;
 
+@interface _UIBatteryView : UIView
+- (BOOL)saverModeActive;
+@end
+
 %hook _UIBatteryView
 
 - (id)fillColor {
 	if (fill_enabled) {
-		return [UIColor cscp_colorFromHexString:fill_hex];
+		if ([self saverModeActive]) {
+			return [UIColor cscp_colorFromHexString:fill_hexPowerSave];
+		} else {
+			return [UIColor cscp_colorFromHexString:fill_hex];
+		}
 	}
 	return %orig;
 }
 
 - (id)_batteryFillColor {
 	if (fill_enabled) {
-		return [UIColor cscp_colorFromHexString:fill_hex];
+		if ([self saverModeActive]) {
+			return [UIColor cscp_colorFromHexString:fill_hexPowerSave];
+		} else {
+			return [UIColor cscp_colorFromHexString:fill_hex];
+		}
 	}
 	return %orig;
 }
@@ -54,6 +67,7 @@ BOOL border_enabled = NO;
 
 static void preferencesChanged(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
     fill_hex = [preferences objectForKey:@"fillColor"];
+	fill_hexPowerSave = [preferences objectForKey:@"fillColorPowerSaver"];
 	fill_enabled = [preferences boolForKey:@"fillColorSwitch"];
 	bolt_hex = [preferences objectForKey:@"boltColor"];
 	bolt_enabled = [preferences boolForKey:@"boltColorSwitch"];
