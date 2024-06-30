@@ -12,21 +12,12 @@ HBPreferences *preferences = nil;
 
 %hook _UIBatteryView
 
-- (id)fillColor {
-	if (preferences[@"fillColorSwitch"]) {
-		if ([self saverModeActive]) {
-			return [UIColor cscp_colorFromHexString:preferences[@"fillColorPowerSaver"]];
-		} else {
-			return [UIColor cscp_colorFromHexString:preferences[@"fillColor"]];
-		}
-	}
-	return %orig;
-}
-
 - (id)_batteryFillColor {
 	if (preferences[@"fillColorSwitch"]) {
 		if ([self saverModeActive]) {
 			return [UIColor cscp_colorFromHexString:preferences[@"fillColorPowerSaver"]];
+		} else if ([self isLowBattery]) {
+			return [UIColor cscp_colorFromHexString:preferences[@"fillColorLowPower"]];
 		} else {
 			return [UIColor cscp_colorFromHexString:preferences[@"fillColor"]];
 		}
