@@ -4,61 +4,54 @@
 #include <CSColorPicker/CSColorPicker.h>
 
 HBPreferences *preferences = nil;
-NSString *fill_hex = nil;
-NSString *fill_hexPowerSave = nil;
-BOOL fill_enabled = NO;
-NSString *bolt_hex = nil;
-BOOL bolt_enabled = NO;
-NSString *pin_hex = nil;
-BOOL pin_enabled = NO;
-NSString *border_hex = nil;
-BOOL border_enabled = NO;
+NSDictionary *cached_prefs = nil;
 
 @interface _UIBatteryView : UIView
 - (BOOL)saverModeActive;
+- (BOOL)isLowBattery;
 @end
 
 %hook _UIBatteryView
 
 - (id)fillColor {
-	if (fill_enabled) {
+	if (cached_prefs[@"fillColorSwitch"]) {
 		if ([self saverModeActive]) {
-			return [UIColor cscp_colorFromHexString:fill_hexPowerSave];
+			return [UIColor cscp_colorFromHexString:cached_prefs[@"fillColorPowerSaver"]];
 		} else {
-			return [UIColor cscp_colorFromHexString:fill_hex];
+			return [UIColor cscp_colorFromHexString:cached_prefs[@"fillColor"]];
 		}
 	}
 	return %orig;
 }
 
 - (id)_batteryFillColor {
-	if (fill_enabled) {
+	if (cached_prefs[@"fillColorSwitch"]) {
 		if ([self saverModeActive]) {
-			return [UIColor cscp_colorFromHexString:fill_hexPowerSave];
+			return [UIColor cscp_colorFromHexString:cached_prefs[@"fillColorPowerSaver"]];
 		} else {
-			return [UIColor cscp_colorFromHexString:fill_hex];
+			return [UIColor cscp_colorFromHexString:cached_prefs[@"fillColor"]];
 		}
 	}
 	return %orig;
 }
 
 - (id)boltColor {
-	if (bolt_enabled) {
-		return [UIColor cscp_colorFromHexString:bolt_hex];
+	if (cached_prefs[@"boltColorSwitch"]) {
+		return [UIColor cscp_colorFromHexString:cached_prefs[@"boltColor"]];
 	}
 	return [UIColor whiteColor];
 }
 
 - (id)bodyColor {
-	if (border_enabled) {
-		return [UIColor cscp_colorFromHexString:border_hex];
+	if (cached_prefs[@"borderColorSwitch"]) {
+		return [UIColor cscp_colorFromHexString:cached_prefs[@"borderColor"]];
 	}
 	return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.4];
 }
 
 - (id)pinColor {
-	if (pin_enabled) {
-		return [UIColor cscp_colorFromHexString:pin_hex];
+	if (cached_prefs[@"pinColorSwitch"]) {
+		return [UIColor cscp_colorFromHexString:cached_prefs[@"pinColor"]];
 	}
 	return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
 }
@@ -66,15 +59,7 @@ BOOL border_enabled = NO;
 %end
 
 static void preferencesChanged(CFNotificationCenterRef center, void *observer, CFStringRef name, const void *object, CFDictionaryRef userInfo) {
-    fill_hex = [preferences objectForKey:@"fillColor"];
-	fill_hexPowerSave = [preferences objectForKey:@"fillColorPowerSaver"];
-	fill_enabled = [preferences boolForKey:@"fillColorSwitch"];
-	bolt_hex = [preferences objectForKey:@"boltColor"];
-	bolt_enabled = [preferences boolForKey:@"boltColorSwitch"];
-	pin_hex = [preferences objectForKey:@"pinColor"];
-	pin_enabled = [preferences boolForKey:@"pinColorSwitch"];
-	border_hex = [preferences objectForKey:@"borderColor"];
-	border_enabled = [preferences boolForKey:@"borderColorSwitch"];
+    cached_prefs = [preferences dictionaryRepresentation];
 }
 
 %ctor {
