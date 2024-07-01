@@ -184,7 +184,7 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Low power threshold</string>
+			<string>Low power color threshold</string>
 		</dict>
 		<dict>
             <key>cell</key>
