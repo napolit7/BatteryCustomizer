@@ -9,6 +9,7 @@ HBPreferences *preferences = nil;
 - (BOOL)saverModeActive;
 - (BOOL)isLowBattery;
 - (void)setLowBatteryChargePercentThreshold:(double)arg1;
+- (long long)chargingState;
 @end
 
 %hook _UIBatteryView
@@ -24,6 +25,8 @@ HBPreferences *preferences = nil;
 			return [UIColor cscp_colorFromHexString:preferences[@"fillColorPowerSaver"]];
 		} else if ([self isLowBattery]) {
 			return [UIColor cscp_colorFromHexString:preferences[@"fillColorLowPower"]];
+		} else if ([self chargingState]) {
+			return [UIColor cscp_colorFromHexString:preferences[@"fillColorCharging"]];
 		} else {
 			return [UIColor cscp_colorFromHexString:preferences[@"fillColor"]];
 		}

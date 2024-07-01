@@ -11,8 +11,6 @@
 			<string>Fill Color Settings</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
@@ -25,8 +23,6 @@
 			<string>Enabled</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>cellClass</key>
@@ -36,13 +32,11 @@
 			<key>key</key>
 			<string>fillColor</string>
 			<key>label</key>
-			<string>Fill Color</string>
+			<string>Fill color</string>
 			<key>fallback</key>
 			<string>FFFFFF</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>cellClass</key>
@@ -52,13 +46,11 @@
 			<key>key</key>
 			<string>fillColorPowerSaver</string>
 			<key>label</key>
-			<string>Power Saver mode</string>
+			<string>Power Saver Mode</string>
 			<key>fallback</key>
 			<string>FFCC00</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>cellClass</key>
@@ -74,13 +66,25 @@
 		</dict>
 		<dict>
 			<key>cell</key>
+			<string>PSLinkCell</string>
+			<key>cellClass</key>
+			<string>CSColorDisplayCell</string>
+			<key>defaults</key>
+			<string>com.napolit7.BatteryCustomizerPreferences</string>
+			<key>key</key>
+			<string>fillColorCharging</string>
+			<key>label</key>
+			<string>Charging color</string>
+			<key>fallback</key>
+			<string>00FF00</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Bolt Color Settings</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
@@ -93,8 +97,6 @@
 			<string>Enabled</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>cellClass</key>
@@ -104,7 +106,7 @@
 			<key>key</key>
 			<string>boltColor</string>
 			<key>label</key>
-			<string>Bolt Color</string>
+			<string>Bolt color</string>
 			<key>fallback</key>
 			<string>FFFFFF</string>
 		</dict>
@@ -115,8 +117,6 @@
 			<string>Pin Color Settings</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
@@ -129,8 +129,6 @@
 			<string>Enabled</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>cellClass</key>
@@ -140,7 +138,7 @@
 			<key>key</key>
 			<string>pinColor</string>
 			<key>label</key>
-			<string>Pin Color</string>
+			<string>Pin color</string>
 			<key>fallback</key>
 			<string>80FFFFFF</string>
 		</dict>
@@ -151,8 +149,6 @@
 			<string>Border Color Settings</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
@@ -165,8 +161,6 @@
 			<string>Enabled</string>
 		</dict>
 		<dict>
-			<key>PostNotification</key>
-			<string>com.napolit7.BatteryCustomizerPreferences/ReloadPrefs</string> 
 			<key>cell</key>
 			<string>PSLinkCell</string>
 			<key>cellClass</key>
@@ -176,7 +170,7 @@
 			<key>key</key>
 			<string>borderColor</string>
 			<key>label</key>
-			<string>Border Color</string>
+			<string>Border color</string>
 			<key>fallback</key>
 			<string>67FFFFFF</string>
 		</dict>
@@ -199,8 +193,6 @@
             <real>100</real>
             <key>key</key>
             <string>lowPowerThreshold</string>
-            <key>label</key>
-            <string>Threshold</string>
 			<key>showValue</key>
 			<true/>
 			<key>isSegmented</key>
