@@ -8,12 +8,18 @@ HBPreferences *preferences = nil;
 @interface _UIBatteryView : UIView
 - (BOOL)saverModeActive;
 - (BOOL)isLowBattery;
+- (void)setLowBatteryChargePercentThreshold:(double)arg1;
 @end
 
 %hook _UIBatteryView
 
+- (BOOL)isLowBattery {
+	[self setLowBatteryChargePercentThreshold:([preferences doubleForKey:@"lowPowerThreshold"]/100)];
+	return %orig;
+}
+
 - (id)_batteryFillColor {
-	if (preferences[@"fillColorSwitch"]) {
+	if ([preferences boolForKey:@"fillColorSwitch"]) {
 		if ([self saverModeActive]) {
 			return [UIColor cscp_colorFromHexString:preferences[@"fillColorPowerSaver"]];
 		} else if ([self isLowBattery]) {
@@ -26,21 +32,21 @@ HBPreferences *preferences = nil;
 }
 
 - (id)boltColor {
-	if (preferences[@"boltColorSwitch"]) {
+	if ([preferences boolForKey:@"boltColorSwitch"]) {
 		return [UIColor cscp_colorFromHexString:preferences[@"boltColor"]];
 	}
 	return [UIColor whiteColor];
 }
 
 - (id)bodyColor {
-	if (preferences[@"borderColorSwitch"]) {
+	if ([preferences boolForKey:@"borderColorSwitch"]) {
 		return [UIColor cscp_colorFromHexString:preferences[@"borderColor"]];
 	}
 	return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.4];
 }
 
 - (id)pinColor {
-	if (preferences[@"pinColorSwitch"]) {
+	if ([preferences boolForKey:@"pinColorSwitch"]) {
 		return [UIColor cscp_colorFromHexString:preferences[@"pinColor"]];
 	}
 	return [UIColor colorWithRed:1 green:1 blue:1 alpha:0.5];
