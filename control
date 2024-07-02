@@ -1,6 +1,6 @@
 Package: com.napolit7.batterycustomizer
 Name: BatteryCustomizer
-Version: 1.1.2
+Version: 1.1.3
 Architecture: iphoneos-arm
 Description: Customize your battery!
 Maintainer: napolit7

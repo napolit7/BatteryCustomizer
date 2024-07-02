@@ -10,12 +10,23 @@ HBPreferences *preferences = nil;
 - (BOOL)isLowBattery;
 - (void)setLowBatteryChargePercentThreshold:(double)arg1;
 - (long long)chargingState;
+- (void)setShowsInlineChargingIndicator:(BOOL)arg1;
 @end
 
 %hook _UIBatteryView
 
 - (BOOL)isLowBattery {
 	[self setLowBatteryChargePercentThreshold:([preferences doubleForKey:@"lowPowerThreshold"]/100)];
+	return %orig;
+}
+
+- (long long)chargingState {
+	if ([preferences[@"boltVisibility"] isEqual:@"invisible"]) {
+		[self setShowsInlineChargingIndicator:NO];
+	} else {
+		[self setShowsInlineChargingIndicator:YES];
+	}
+
 	return %orig;
 }
 

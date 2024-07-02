@@ -114,6 +114,38 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
+			<string>Bolt Visibility Settings</string>
+		</dict>
+		<dict>
+            <key>cell</key>
+            <string>PSLinkListCell</string>
+            <key>label</key>
+            <string>Toggle Visibility</string>
+            <key>detail</key>
+            <string>PSListItemsController</string>
+            <key>key</key>
+            <string>boltVisibility</string>
+            <key>default</key>
+            <string>unselected</string>
+			<key>defaults</key>
+			<string>com.napolit7.BatteryCustomizerPreferences</string>
+            <key>title</key>
+            <string>Options</string>
+            <key>validTitles</key>
+            <array>
+				<string>Default</string>
+				<string>Always hide</string>
+            </array>
+			<key>validValues</key>
+            <array>
+                <string>unselected</string>
+				<string>invisible</string>
+            </array>
+        </dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
 			<string>Pin Color Settings</string>
 		</dict>
 		<dict>
